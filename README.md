@@ -13,100 +13,100 @@
 配置私有应用的app_key, app_secret，参见yhsd_api/config.private.php
 
 ```php
-return array(
-    'app_key' => '配置你的app_key',
-    'app_secret' => '配置你的app_secret',
-);
+	return array(
+	    'app_key' => '配置你的app_key',
+	    'app_secret' => '配置你的app_secret',
+	);
 ```
 
 使用私有应用，实例化私有应用并加载配置文件
 ```php
-$config = include('config.php');
-$app = new YhsdAppPrivate($config);
+	$config = include('config.php');
+	$app = new YhsdAppPrivate($config);
 ```
 
 获取友好速搭token
 
 ```php
-$app->generate_token();
+	$app->generate_token();
 ```
 或直接使用属性token
 ```php
-$app->token;
+	$app->token;
 ```
 
 调用友好速搭api接口
 
 ```php
-/**
- *get 接口调用
- * @param string $url 需要访问的api接口的地址
- * @return array 返回结果为数组,包含：
- * code :200
- * body hash 数据
- * header hash 数据
- */
-public function get($url)
+	/**
+	 *get 接口调用
+	 * @param string $url 需要访问的api接口的地址
+	 * @return array 返回结果为数组,包含：
+	 * code :200
+	 * body hash 数据
+	 * header hash 数据
+	 */
+	public function get($url)
 
-/**
- * put 接口调用
- * @param string @url 需要访问的api接口的地址
- * @param array $params 参数数组
- * @return array 返回结果为数组，包含：
- * code :200
- * body hash 数据
- * header hash 数据
- */
-public function put($url, $params)
+	/**
+	 * put 接口调用
+	 * @param string @url 需要访问的api接口的地址
+	 * @param array $params 参数数组
+	 * @return array 返回结果为数组，包含：
+	 * code :200
+	 * body hash 数据
+	 * header hash 数据
+	 */
+	public function put($url, $params)
 
-/**
- * post 接口调用
- * @param string @url 需要访问的api接口的地址
- * @param array $params 参数数组
- * @return array 返回结果为数组，包含：
- * code :200
- * body hash 数据
- * header hash 数据
- */
-public function post($url, $params)
+	/**
+	 * post 接口调用
+	 * @param string @url 需要访问的api接口的地址
+	 * @param array $params 参数数组
+	 * @return array 返回结果为数组，包含：
+	 * code :200
+	 * body hash 数据
+	 * header hash 数据
+	 */
+	public function post($url, $params)
 
-/**
- * delete 接口调用
- * @param string $url 需要访问的api接口的地址
- * @return array 返回结果为数组,包含：
- * code :200
- * body hash 数据
- * header hash 数据
- */
-public function delete($url)
+	/**
+	 * delete 接口调用
+	 * @param string $url 需要访问的api接口的地址
+	 * @return array 返回结果为数组,包含：
+	 * code :200
+	 * body hash 数据
+	 * header hash 数据
+	 */
+	public function delete($url)
 ```
 
 例子
 ```php
 
-//get 接口调用
-list($code, $body, $header) = array_values($app->get("shop"));
+	//get 接口调用
+	list($code, $body, $header) = array_values($app->get("shop"));
 
-//put 接口调用
-$params = array(
-  "redirect"=> array(
-    "path"=> "/12345",
-    "target"=> "/blogs"
-  )
-)
-list($code, $body, $header) = array_values($app->put("redirects/1", params));
+	//put 接口调用
+	$params = array(
+	  "redirect"=> array(
+	    "path"=> "/12345",
+	    "target"=> "/blogs"
+	  )
+	)
+	list($code, $body, $header) = array_values($app->put("redirects/1", params));
 
-//post 接口调用
-$params = array(
-  "redirect"=> array(
-    "path"=> "/12345",
-    "target"=> "/blogs"
-  )
-)
-list($code, $body, $header) = array_values($app->put("redirects", params));
+	//post 接口调用
+	$params = array(
+	  "redirect"=> array(
+	    "path"=> "/12345",
+	    "target"=> "/blogs"
+	  )
+	)
+	list($code, $body, $header) = array_values($app->put("redirects", params));
 
-//delete 接口调用
-list($code, $body, $header) = array_values($app->delete("redirects/1"));
+	//delete 接口调用
+	list($code, $body, $header) = array_values($app->delete("redirects/1"));
 
 ```
 
@@ -115,16 +115,16 @@ list($code, $body, $header) = array_values($app->delete("redirects/1"));
 配置公有应用的app_key, app_secret, app_scope, 参见yhsd_api/config.public.php
 
 ```php
-return array(
-    'app_key' => '配置你的app_key',
-    'app_secret' => '配置你的app_secret',
-    'app_scope' => '配置你的应用scope',
-);
+	return array(
+	    'app_key' => '配置你的app_key',
+	    'app_secret' => '配置你的app_secret',
+	    'app_scope' => '配置你的应用scope',
+	);
 ```
 使用公有应用，实例化公有应用并加载配置文件
 ```php
-$config = include('config.php');
-$app = new YhsdAppPublic($config);
+	$config = include('config.php');
+	$app = new YhsdAppPublic($config);
 ```
 
 获取友好速搭授权url
@@ -174,9 +174,9 @@ $app = new YhsdAppPublic($config);
 ```
 例子：
 ```php
-$code = '用户授权后返回给回调网址的code';
-$redirect_uri = '发起用户授权的回调地址'; //与获取友好速搭授权的回调地址一致
-$token = $app->generate_token($code,$redirect_uri);
+	$code = '用户授权后返回给回调网址的code';
+	$redirect_uri = '发起用户授权的回调地址'; //与获取友好速搭授权的回调地址一致
+	$token = $app->generate_token($code,$redirect_uri);
 ```
 
 调用友好速搭api接口
@@ -248,31 +248,31 @@ $token = $app->generate_token($code,$redirect_uri);
 
 例子
 ```php
-$token = $app->generate_token();
+	$token = $app->generate_token();
 
-//get 接口调用
-list($code, $body, $header) = array_values($app->get("shop"));
+	//get 接口调用
+	list($code, $body, $header) = array_values($app->get("shop"));
 
-//put 接口调用
-$params = array(
-  "redirect"=> array(
-    "path"=> "/12345",
-    "target"=> "/blogs"
-  )
-)
-list($code, $body, $header) = array_values($app->put("redirects/1", params));
+	//put 接口调用
+	$params = array(
+	  "redirect"=> array(
+	    "path"=> "/12345",
+	    "target"=> "/blogs"
+	  )
+	)
+	list($code, $body, $header) = array_values($app->put("redirects/1", params));
 
-//post 接口调用
-$params = array(
-  "redirect"=> array(
-    "path"=> "/12345",
-    "target"=> "/blogs"
-  )
-)
-list($code, $body, $header) = array_values($app->put("redirects", params));
+	//post 接口调用
+	$params = array(
+	  "redirect"=> array(
+	    "path"=> "/12345",
+	    "target"=> "/blogs"
+	  )
+	)
+	list($code, $body, $header) = array_values($app->put("redirects", params));
 
-//delete 接口调用
-list($code, $body, $header) = array_values($app->delete("redirects/1"));
+	//delete 接口调用
+	list($code, $body, $header) = array_values($app->delete("redirects/1"));
 ```
 友好速搭公有应用的每个店铺都有固定的token,不会过期，获取token后，应该与相应的商铺信息永久保存下来。
 
