@@ -1,14 +1,14 @@
-* yhsd-api-php
+# yhsd-api-php
 
 友好速搭应用开发 PHP SDK
 
-** 安装
+## 安装
 下载SDK压缩包，并解压到项目目录。
 
 
-** 使用方法
+## 使用方法
 
-***1，私有应用
+###1，私有应用
 
 配置私有应用的app_key, app_secret，参见yhsd_api/config.private.php
 
@@ -96,7 +96,7 @@ $params = array(
 )
 list($code, $body, $header) = array_values($app->put("redirects/1", params));
 
-*post 接口调用
+//post 接口调用
 $params = array(
   "redirect"=> array(
     "path"=> "/12345",
@@ -110,7 +110,7 @@ list($code, $body, $header) = array_values($app->delete("redirects/1"));
 
 ```
 
-***2，公有应用
+###2，公有应用
 
 配置公有应用的app_key, app_secret, app_scope, 参见yhsd_api/config.public.php
 
@@ -262,7 +262,7 @@ $params = array(
 )
 list($code, $body, $header) = array_values($app->put("redirects/1", params));
 
-*post 接口调用
+//post 接口调用
 $params = array(
   "redirect"=> array(
     "path"=> "/12345",
@@ -276,7 +276,7 @@ list($code, $body, $header) = array_values($app->delete("redirects/1"));
 ```
 友好速搭公有应用的每个店铺都有固定的token,不会过期，获取token后，应该与相应的商铺信息永久保存下来。
 
-***3,公共部分
+###3,公共部分
 
 第三方App接入参数生成函数
 ```php
@@ -313,7 +313,7 @@ list($code, $body, $header) = array_values($app->delete("redirects/1"));
 	 */
 	public function openpayment_verify($data, $hmac)
 ```
-** 贡献
+## 贡献
 
 1. Fork it ( https:*github.com/yeezon/yhsd-api-php/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
